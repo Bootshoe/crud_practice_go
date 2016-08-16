@@ -1,0 +1,25 @@
+<div>
+
+
+
+<main role="main">
+  <ul id="category_list">
+    <h2>Categories</h2>
+    <% @categories.each do |category| %>
+      <li>
+        <a href="/categories/<%= category.id %>" <span><%= category.name %></span></a>
+    <% end %>
+  </ul>
+</main>
+
+
+  <% if session[:user_id] != nil %>
+    <form id="category_form" action="/categories" method="post">
+      New category:
+      <input type='text' name='name' placeholder="category name">
+      <input type='submit' value='Add Category'>
+    </form>
+  <% end %>
+
+
+ </div>

@@ -1,22 +1,24 @@
 <div>
 
+  <h2>Auction Items for <%= @category.name %></h2>
+
+  <ul>
+    <% @category.auctions.each do |auction| %>
 
 
-<main role="main">
-  <ul id="category_list">
-    <h2>Categories</h2>
-    <% @categories.each do |category| %>
       <li>
-        <a href="/categories/<%= category.id %>" <span><%= category.name %></span></a>
+        <a href="/categories/<%= @category.id %>/auctions/<%= auction.id %>"><%= auction.name %></a><span><br><%= "#{auction.description[0..40]}..." %></span>
+      </li>
     <% end %>
   </ul>
-</main>
-
 
   <% if session[:user_id] != nil %>
-  <form id="new_category_button" action="/categories/new" method="get">
-    <input type="submit" name="submit" value="Add Categroy">
-  </form>
+    <form id="new_auction_button" action="/categories/<%= @category.id %>/auctions/new" method="get">
+      <input type="text" name="name" placeholder="name"><br>
+      <textarea name="description" placeholder="description"></textarea><br>
+      <input type="text" name="end_date" placeholder="end date">
+      <input type="submit" name="submit" value="Add item">
+    </form>
   <% end %>
 
- </div>
+</div>
