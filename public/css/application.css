@@ -7,3 +7,8 @@
 th {
   text-align: left;
 }
+
+
+.money_sign{
+  display: inline;
+}

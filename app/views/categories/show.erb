@@ -8,6 +8,14 @@
 
       <li>
         <a href="/categories/<%= @category.id %>/auctions/<%= auction.id %>"><%= auction.name %></a><br><span><%= auction.description[0..40] %>...</span>
+        <% if session[:user_id] == auction.seller_id%>
+          <form class="edit_delete" method="POST" action="/categories/<%=@category.id%>/auctions/<%=auction.id%>">
+              <input type="hidden" name="_method" value="delete">
+              <input type="submit" value="delete">
+          </form>
+          <a class="edit_delete" href="/categories/<%=@category.id%>/auctions/<%=auction.id%>/edit" >edit</a>
+
+<% end %>
       </li>
     <% end %>
   </ul>
@@ -15,5 +23,6 @@
   <% if session[:user_id] != nil %>
     <a href="/categories/<%= @category.id %>/auctions/new"> Create an auction</a>
   <% end %>
+
 
 </div>

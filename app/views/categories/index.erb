@@ -2,15 +2,24 @@
 
 
 
-<main role="main">
-  <ul id="category_list">
-    <h2>Categories</h2>
-    <% @categories.each do |category| %>
-      <li>
-        <a href="/categories/<%= category.id %>" <span><%= category.name %></span></a>
+  <main role="main">
+    <ul id="category_list">
+      <h2>Categories</h2>
+      <% @categories.each do |category| %>
+        <li>
+          <a href="/categories/<%= category.id %>" <span><%= category.name %></span></a>
+      <% end %>
+    </ul>
+  </main>
+
+
+
+  <% if @errors %>
+    <% @errors.each do |error| %>
+      <h2 class="error">error: <%= error %></h2>
     <% end %>
-  </ul>
-</main>
+  <% end %>
+
 
 
   <% if session[:user_id] != nil %>

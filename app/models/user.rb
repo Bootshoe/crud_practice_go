@@ -31,7 +31,7 @@ include BCrypt
 
   def password_longer_than_six
     if @plaintext.length < 6
-      self.errors.add(:password, "Password must be at least six characters")
+      self.errors.add(:password, "must be at least six characters")
     end
   end
 

@@ -39,6 +39,8 @@ end
 
 get '/users/:user_id' do
   @user = User.find(params[:user_id])
+  @auctions = Auction.where(seller_id: @user.id)
+  @bids = Bid.where(bidder_id: @user.id)
   erb :'users/index'
 end
 

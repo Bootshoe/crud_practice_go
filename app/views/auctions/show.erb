@@ -9,12 +9,12 @@
   <br>
 
   <h3>Current bids</h3>
-      <ul>
+      <ul id="bid_list">
         <% @bids.each do |bid| %>
 
 
-          <li>
-            <h4>$<%= bid.bid %>:<a href="/users/<%= bid.bidder_id %>"><%= bid.bidder.username %></a></h4><p>updated bid at: <%= bid.updated_at %></p>
+          <li id="bid_item">
+            <h4>$<%= bid.bid %>   from <a href="/users/<%= bid.bidder_id %>"><%= bid.bidder.username %></a></h4><p>updated bid at: <%= bid.updated_at %></p>
           </li>
         <% end %>
       </ul>

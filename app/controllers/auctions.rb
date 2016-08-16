@@ -22,3 +22,32 @@ get '/categories/:category_id/auctions/:auction_id' do
   erb :"/auctions/show"
 end
 
+delete '/categories/:category_id/auctions/:auction_id' do
+  @auction = Auction.find(params[:auction_id])
+  redirect '/not_authorized' if current_user == nil || current_user.id != @auction.seller_id
+  @auction.destroy
+  redirect :"/categories/#{params[:category_id]}"
+end
+
+get '/categories/:category_id/auctions/:auction_id/edit' do
+  @auction = Auction.find(params[:auction_id])
+  redirect '/not_authorized' if current_user == nil || current_user.id != @auction.seller_id
+  erb :'/auctions/edit'
+end
+
+put '/categories/:category_id/auctions/:auction_id' do
+  @auction = Auction.find(params[:auction_id])
+  redirect '/not_authorized' if current_user == nil || current_user.id != @auction.seller_id
+  @auction.update(params[:auction])
+  if @errors = @auction.errors.full_messages
+    redirect :"/categories/#{params[:category_id]}"
+  else
+    redirect :"/categories/#{params[:category_id]}/auctions/#{params[:auction_id]}"
+  end
+end
+
+
+get '/not_authorized' do
+  erb :not_authorized
+end
+

@@ -1,0 +1,13 @@
+<% if @errors %>
+  <% @errors.each do |error| %>
+    <h2 class="error">error: <%= error %></h2>
+  <% end %>
+<% end %>
+
+
+<form method="post" action="/categories/:category_id/auctions/:auction_id">
+    <input type="text" name="name" placeholder="name"><br>
+    <textarea name="description" placeholder="description"></textarea><br>
+    <input type="text" name="end_date" placeholder="end date">
+    <input type="submit" name="submit" value="Add item">
+</form>

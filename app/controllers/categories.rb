@@ -5,8 +5,15 @@ end
 
 
 post '/categories' do
-  Category.create(params)
-  redirect '/categories'
+  @category = Category.new(params)
+  if @category.save
+    redirect '/categories'
+  else
+    @errors = @category.errors.full_messages
+    @categories = Category.all
+    erb :'/categories/index'
+  end
+
 end
 
 get '/categories/:category_id' do

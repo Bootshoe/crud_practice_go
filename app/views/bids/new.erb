@@ -1,0 +1,14 @@
+<h2>Make a bid for <%= @auction.name %></h2>
+
+<% if @errors %>
+  <% @errors.each do |error| %>
+    <h2 class="error">error: <%= error %></h2>
+  <% end %>
+<% end %>
+
+<% if session[:user_id] != nil %>
+    <form id="new_bid_form" action="/categories/<%= @category.id %>/auctions/<%= @auction.id %>" method="post">
+      <h4 class="money_sign">$</h4><input class="money_sign" type="text" name="bid" placeholder="bid"><br>
+      <input type="submit" name="submit" value="Add item">
+    </form>
+  <% end %>
