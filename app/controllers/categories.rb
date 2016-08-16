@@ -11,6 +11,6 @@ end
 
 get '/categories/:category_id' do
   @category = Category.find(params[:category_id])
-  @auctions = Auction.where(category: @category).order(:updated_at)
-  erb :'categories/show'
+  @auctions = Auction.where(category: @category.id).order(:updated_at)
+  erb :'/categories/show'
 end
