@@ -17,7 +17,7 @@
     <ul class="bids_list no-bullets no-padding">
       <% @user.bids.each do |bid| %>
         <li class="bid_item pad-b-4">
-        <a href="/auctions/<%= bid.auction.id %>" class="auction_name font-2 pad-b-1-4 c-white"><%= bid.auction.name%></a><span id="bid_amount">$<%=bid.bid%></span>
+        <a href="/auctions/<%= bid.auction.id %>" class="auction_name font-2 pad-b-1-4 c-white"><%= bid.auction.name%></a><span id="bid_amount">  $<%=bid.bid%></span>
 
         <p class="auction-description"><%= bid.auction.description %></p>
          </li>
