@@ -18,7 +18,7 @@ end
 get '/categories/:category_id/auctions/:auction_id' do
   @auction = Auction.find(params[:auction_id])
   @category = Category.find(params[:category_id])
-  @bids = Bid.where(auction: @auction.id).order(:bid)
+  @bids = Bid.where(auction: @auction.id).order(:bid).sort.reverse
   erb :"/auctions/show"
 end
 
@@ -31,18 +31,20 @@ end
 
 get '/categories/:category_id/auctions/:auction_id/edit' do
   @auction = Auction.find(params[:auction_id])
+  @category = Category.find(params[:category_id])
   redirect '/not_authorized' if current_user == nil || current_user.id != @auction.seller_id
   erb :'/auctions/edit'
 end
 
 put '/categories/:category_id/auctions/:auction_id' do
   @auction = Auction.find(params[:auction_id])
+  @category = Category.find(params[:category_id])
   redirect '/not_authorized' if current_user == nil || current_user.id != @auction.seller_id
-  @auction.update(params[:auction])
-  if @errors = @auction.errors.full_messages
+  if @auction.update(name: params[:name], description: params[:description], seller_id: session[:user_id], end_date: params[:end_date], category_id: params[:category_id])
     redirect :"/categories/#{params[:category_id]}"
   else
-    redirect :"/categories/#{params[:category_id]}/auctions/#{params[:auction_id]}"
+    @errors = @auction.errors.full_messages
+    redirect :"/categories/#{params[:category_id]}"
   end
 end
 

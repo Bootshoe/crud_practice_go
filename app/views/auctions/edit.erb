@@ -5,9 +5,10 @@
 <% end %>
 
 
-<form method="post" action="/categories/:category_id/auctions/:auction_id">
-    <input type="text" name="name" placeholder="name"><br>
-    <textarea name="description" placeholder="description"></textarea><br>
-    <input type="text" name="end_date" placeholder="end date">
-    <input type="submit" name="submit" value="Add item">
+<form method="post" action="/categories/<%=@category.id%>/auctions/<%=@auction.id%>">
+  <input type="hidden" name="_method" value="put">
+    <input type="text" name="name" placeholder="name" value="<%= @auction.name%>"><br>
+    <textarea name="description" placeholder="description"><%= @auction.description%></textarea><br>
+    <input type="text" name="end_date" placeholder="end date"  value="<%= @auction.end_date%>">
+    <input type="submit" name="submit" value="edit">
 </form>

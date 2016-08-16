@@ -8,6 +8,8 @@
   <br>
   <br>
 
+  <h2>Highest bid <%= @auction.highestBid.bid %> from <%= @auction.highestBid.bidder.username %></h2>
+
   <h3>Current bids</h3>
       <ul id="bid_list">
         <% @bids.each do |bid| %>

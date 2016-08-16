@@ -9,4 +9,15 @@ class Auction < ActiveRecord::Base
   validates_presence_of :seller_id
   validates_presence_of :end_date
   validates_presence_of :category_id
+
+  def highestBid
+    highest = self.bids.first
+    self.bids.each do |bid|
+     if (bid.bid) > (highest.bid)
+      highest = bid
+     end
+    end
+    highest
+  end
+
 end
