@@ -1,0 +1,26 @@
+<div>
+
+  <h2><%= @auction.name %></h2>
+  <br>
+  <br>
+  <p><%= @auction.description %></p>
+  <br>
+  <br>
+  <br>
+
+  <h3>Current bids</h3>
+      <ul>
+        <% @bids.each do |bid| %>
+
+
+          <li>
+            <h4>$<%= bid.bid %>:<a href="/users/<%= bid.bidder_id %>"><%= bid.bidder.username %></a></h4><p>updated bid at: <%= bid.updated_at %></p>
+          </li>
+        <% end %>
+      </ul>
+
+  <% if session[:user_id] != nil %>
+    <a href="/categories/<%= @category.id %>/auctions/<%= @auction.id %>/bids/new"> Make a bid</a>
+  <% end %>
+
+</div>

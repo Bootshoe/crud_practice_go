@@ -1,4 +1,10 @@
-<h2>Create a new auction</h2>
+<h2>Create a new auction for <%= @category.name %></h2>
+
+<% if @errors %>
+  <% @errors.each do |error| %>
+    <h2 class="error">error: <%= error %></h2>
+  <% end %>
+<% end %>
 
 <% if session[:user_id] != nil %>
     <form id="new_auction_button" action="/categories/<%= @category.id %>/auctions" method="post">

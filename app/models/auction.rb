@@ -4,4 +4,9 @@ class Auction < ActiveRecord::Base
   has_one :highest_bid, class_name: :Bid
   belongs_to :category
 
+  validates_presence_of :name
+  validates_presence_of :description
+  validates_presence_of :seller_id
+  validates_presence_of :end_date
+  validates_presence_of :category_id
 end
